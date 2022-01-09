@@ -1,0 +1,135 @@
+@font-face {
+  font-family: Raqami;
+  src: url("../fonts/alfont_com_AlFont_com_Raqami.ttf");
+}
+@font-face {
+  font-family: angie;
+  src: url("../fonts/PressStart2P-Regular.ttf");
+}
+
+.form_container {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.form_container .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 85vh;
+  margin: auto;
+  direction: rtl;
+  padding: 0 20px;
+}
+.form_container .wrapper .form_card {
+  display: block;
+  width: auto;
+  max-width: 700px;
+  width: 100%;
+  position: relative;
+  padding: 40px 50px;
+  background-color: #f3f3f3;
+  border-radius: 25px;
+  box-shadow: -5px 11px 24px -7px rgba(0, 0, 0, 0.35);
+  -webkit-box-shadow: -5px 11px 24px -7px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: -5px 11px 24px -7px rgba(0, 0, 0, 0.35);
+}
+.control_group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: center;
+}
+.control_group label {
+  font-family: Raqami;
+  color: #1e1e1e;
+  font-size: 2.4em;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.control_group input[type="number"],
+.control_group select {
+  height: 60px;
+  background: white;
+  font-family: Raqami;
+  font-size: 2.5em;
+  border-radius: 0.25em;
+  text-align: center;
+  padding: 20px;
+  border: transparent;
+  outline: none;
+}
+.control_group select {
+  height: 100px;
+  font-size: 2.3em;
+  direction: ltr;
+  text-align: center;
+  appearance: none;
+}
+.control_group select,
+.control_group select option {
+  font-family: angie;
+  text-align: center;
+}
+.card_title {
+  font-family: Raqami;
+  font-size: 3.2em;
+}
+.form_button {
+  margin-top: 30px;
+}
+
+.form_button button {
+  background: #18f998;
+  text-align: center;
+  font-family: Raqami;
+  font-size: 1.6em;
+  color: #1e1e1e;
+  padding: 15px 40px;
+  cursor: pointer;
+}
+.grades_credit {
+  display: flex;
+  justify-content: space-between;
+}
+.grades_credit input,
+.grades_credit select {
+  flex: 0.49;
+}
+.grades_credit select option {
+  padding: 20px 0;
+}
+@media screen and (max-width: 720px) {
+  .control_group input[type="number"],
+  .control_group select {
+    font-size: 1.5em;
+    height: 30px;
+  }
+  .control_group label {
+    font-size: 1.4em;
+  }
+  .form_container .wrapper .form_card {
+    max-width: 90%;
+    padding: 40px 20px;
+  }
+  .wrapper {
+    padding: 0 10px;
+  }
+  .card_title {
+    font-size: 1.8em;
+  }
+  .grades_credit {
+    flex-direction: column;
+  }
+  .grades_credit input,
+  .grades_credit select {
+    flex: 1;
+    margin-top: 20px;
+  }
+  .control_group select {
+    height: 62px;
+    font-size: 1.25em;
+  }
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>حاسبه المعدل</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+</head>
+
+<body>
+    <section class="form_container">
+        <div class="wrapper">
+            <h1 class="card_title">
+                حاسبة المعدل
+            </h1>
+            <form class="form_card">
+                <div class="control_group">
+                    <label for="numberOfCourse">
+                        عدد المواد الترم الاخير
+                    </label>
+                    <input name="numberOfCourse" id="numberOfCourse" inputmode="numeric" type="number" min="1" max="40">
+                </div>
+
+                <div class="control_group">
+                    <label for="totalHourse">
+                        الساعات الي خلصتها
+                    </label>
+                    <input name="totalHourse" id="totalHourse" type="number" min="1" max="150">
+                </div>
+
+                <div class="control_group">
+                    <label for="totalPoint">
+                        مجموع النقاط للفصول السابق
+                    </label>
+                    <input name="totalPoint" id="totalPoint" type="number" max="500" min="1">
+                </div>
+
+                <div class="form_button">
+                    <button type="button" onclick="createCourseInput()">الـي بعده</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+
+
+    <section class="form_container">
+        <div class="wrapper">
+            <h1 class="card_title">
+                عبي بياناتك ياوحش
+            </h1>
+            <form class="form_card" id="gradesCredits">
+                <div class="control_group">
+                    <label>
+                        ماده
+                    </label>
+                    <div class="grades_credit">
+                        <select name="credit" id="credit">
+                            <option value="4">A</option>
+                            <option value="3.5">B+</option>
+                            <option value="3">B</option>
+                            <option value="2.5">C+</option>
+                            <option value="2">C</option>
+                            <option value="1.5">D</option>
+                            <option value="0">F</option>
+                        </select>
+                        <input name="credit" id="credit" type="number" inputmode="numeric" min="1" max="40"
+                            placeholder="الساعات">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+    <script type="text/javascript" src="../js/index.js"></script>
+</body>
+
+</html>
