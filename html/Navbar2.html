@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://127.0.0.1:5500/html/navbarMenu.html -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./Navbar2_files/animate.min.css" />
+    <title>Navbar</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .navbar_menu {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        margin: 10px 0;
+      }
+      .navbar_menu .nav_item {
+        font-size: 1rem;
+        color: #1e1e1e;
+        font-weight: 600;
+        padding: 0 10px;
+        position: relative;
+        cursor: pointer;
+      }
+      .navbar_menu .nav_item.active,
+      .navbar_menu .nav_item:hover {
+        color: rgb(255, 208, 0);
+      }
+      .dropdown_menu {
+        position: relative;
+      }
+      .dropmenu_wrap {
+        position: absolute;
+        right: 0;
+        left: 0;
+        top: 0;
+      }
+      .dropdown_body {
+        padding: 0;
+        display: flex;
+        transition: 500ms all;
+        flex-direction: column;
+        opacity: 0;
+        margin: auto;
+        max-width: 1296px;
+        min-width: 0;
+        width: 80%;
+        transition: showMenu;
+        animation: showMenu;
+        background-color: whitesmoke;
+        border: 1px solid #aeaeae;
+        padding: 20px;
+        z-index: 2;
+      }
+
+      .dropdown_body.active {
+        transition: 500ms all ease-out;
+        opacity: 1;
+        height: auto;
+        width: auto;
+      }
+      .dropdown_body:not(.active) {
+        height: 0;
+
+        display: none;
+      }
+      .dropdown_body .drop_item {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        margin: 0 10px;
+        font-size: 15px;
+        color: #1e1e1e;
+        align-items: center;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .dropdown_body .drop_item:hover {
+        text-decoration: underline;
+      }
+      .dropdown_body_items {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .dropdown_body_items .drop_item_img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 10px auto 10px;
+      }
+      .dropmenu_container {
+        position: relative;
+      }
+      .dropdown_body_items_header {
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+      }
+      .dropdown_body_items_header span {
+        cursor: pointer;
+      }
+      .overlay {
+        min-height: 100vh;
+        background-color: #1e1e1e8c;
+      }
+      @keyframes showMenu {
+        0% {
+          transform: translateY(-100);
+        }
+
+        100% {
+          transform: translateY(0);
+        }
+      }
+    </style>
+    <style>
+      .sub_drop_menu {
+        display: block;
+        position: relative;
+        background: white;
+      }
+      .sub_drop_menu:not(.active) {
+        display: none;
+      }
+      .sub_drop_menu_body {
+        display: flex;
+        max-width: 100%;
+      }
+      .sub_drop_menu_body .sub_drop_menu_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 10px;
+        width: 150px;
+        height: 150px;
+        cursor: pointer;
+      }
+
+      .sub_drop_menu_item img {
+        width: 100px;
+        display: block;
+        max-height: 100px;
+      }
+      .sub_drop_menu_item span {
+        font-size: medium;
+        color: #1e1e1e;
+        text-decoration: none;
+      }
+      .sub_drop_menu_item span {
+        font-size: medium;
+        color: #1e1e1e;
+        text-decoration: none;
+      }
+      .sub_drop_menu_item span:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <style>
+      .slider {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        margin: auto;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        display: flex;
+      }
+
+      .slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .slider .slide {
+        display: flex;
+        width: 94%;
+        position: absolute;
+        /* left: 0; */
+        transition: 0.3s left ease-in-out;
+        min-width: 200px;
+        max-width: 93%;
+        overflow: hidden;
+      }
+
+      .slider .item {
+        margin-right: 10px;
+      }
+
+      .slider .item:last-child {
+        margin-right: 0;
+      }
+
+      .ctrl {
+        text-align: center;
+        margin-top: 5px;
+      }
+
+      .ctrl-btn {
+        padding: 5px;
+        min-width: 50px;
+        background: #fff;
+        border: none;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+
+        position: absolute;
+        bottom: 5px;
+        margin-top: -27.5px;
+      }
+
+      .ctrl-btn.pro-prev {
+        right: 52px;
+      }
+
+      .ctrl-btn.pro-next {
+        right: 0;
+      }
+    </style>
+  </head>
+  <body data-new-gr-c-s-check-loaded="14.1052.0" data-gr-ext-installed="">
+    <header>
+      <div class="">
+        <nav class="navbar_menu">
+          <span class="nav_item" id="item_1" onclick="openMenu(this)"
+            >Item 1</span
+          >
+          <span class="nav_item" id="item_2" onclick="openMenu(this)"
+            >Item 2</span
+          >
+          <span class="nav_item" id="item_3" onclick="openMenu(this)"
+            >Item 3</span
+          >
+        </nav>
+      </div>
+      <div class="dropmenu_container">
+        <div class="dropmenu_wrap" id="dropmenu_wrap">
+          <div class="dropdown_body" data-menu-target="item_1">
+            <nav class="dropdown_body_items">
+              <div class="dropdown_body_items_header">
+                <h2>Title 1</h2>
+                <span onclick="clearItems()"> ✖</span>
+              </div>
+              <div class="slider" id="slider">
+                <div class="slide" id="slide" data-menu-target="item_1">
+                  <a class="drop_item item active" id="item_1_0">
+                    <img
+                      class="drop_item_img"
+                      src="./Navbar2_files/tree-736885__480.webp"
+                    />
+                    <span>text item1</span>
+                  </a>
+                </div>
+                <button class="ctrl-btn pro-prev" data-menu-target="item_1">
+                  &lt;
+                </button>
+                <button class="ctrl-btn pro-next" data-menu-target="item_1">
+                  &gt;
+                </button>
+              </div>
+            </nav>
+
+            <div class="sub_drop_menu active" data-menu-target="item_1_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_1_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_1_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_1_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+          <div class="dropdown_body" data-menu-target="item_2">
+            <nav class="dropdown_body_items">
+              <div class="dropdown_body_items_header">
+                <h2>Title 2</h2>
+                <span onclick="clearItems()"> ✖</span>
+              </div>
+              <div class="slider" id="slider">
+                <div class="slide" id="slide" data-menu-target="item_2">
+                  <a class="drop_item item active" id="item_2_0">
+                    <img
+                      class="drop_item_img"
+                      src="./Navbar2_files/tree-736885__480.webp"
+                    />
+                    <span>text item1</span>
+                  </a>
+                </div>
+                <button class="ctrl-btn pro-prev" data-menu-target="item_2">
+                  &lt;
+                </button>
+                <button class="ctrl-btn pro-next" data-menu-target="item_2">
+                  &gt;
+                </button>
+              </div>
+            </nav>
+
+            <div class="sub_drop_menu active" data-menu-target="item_2_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_2_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_2_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_1_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" onclick="clearItems()" class=""></main>
+    <script>
+      const clearItems = () => {
+        document
+          .querySelectorAll("span.nav_item")
+          .forEach((i) => i.classList.remove("active"));
+        document.querySelectorAll(".dropdown_body").forEach((e, i) => {
+          e.classList.remove("active");
+        });
+        document.querySelectorAll(".sub_drop_menu").forEach((e, i) => {
+          if (i != 0) e.classList.remove("active");
+        });
+        document.getElementById("main").classList.remove("overlay");
+      };
+      let isVisted = false;
+      const openMenu = (i) => {
+        document.querySelectorAll("span.nav_item").forEach((item) => {
+          if (item.classList.contains("active")) {
+            vistited(true);
+            clearItems();
+          } else {
+            vistited(false);
+          }
+        });
+        console.log(isVisted);
+        setTimeout(() => {
+          let items = document.querySelectorAll(".dropdown_body");
+          let item = i;
+          items.forEach((div, i) => {
+            if (div.getAttribute("data-menu-target") == item.id && !isVisted) {
+              div.classList.add("active");
+              item.classList.add("active");
+              document.getElementById("main").classList.add("overlay");
+            }
+          });
+        }, 200);
+      };
+      const vistited = (v) => (isVisted = v);
+
+      document.querySelectorAll(".drop_item").forEach((sub) => {
+        sub.addEventListener("click", (event) => {
+          let isVisted = false;
+          let item = event.srcElement;
+          let items = document.querySelectorAll(".sub_drop_menu");
+          console.log(items);
+          items.forEach((e) => e.classList.remove("active"));
+
+          setTimeout(() => {
+            items.forEach((div, i) => {
+              let canOpen =
+                div.children[0].children[0].children[0].children.length > 0;
+              if (
+                div.getAttribute("data-menu-target") == item.id &&
+                !isVisted &&
+                canOpen
+              ) {
+                div.classList.add("active");
+                item.classList.add("active");
+              }
+            });
+            console.log(isVisted);
+          }, 200);
+        });
+      });
+    </script>
+    <script></script>
+    <script>
+      productScroll();
+
+      function productScroll() {
+        let slider = document.getElementById("slider");
+        let next = document.getElementsByClassName("pro-next");
+        let prev = document.getElementsByClassName("pro-prev");
+        let slide = document.getElementById("slide");
+        let item = null;
+        let sides = document.querySelectorAll(".slide");
+        let target = "";
+        for (let i = 0; i < next.length; i++) {
+          //refer elements by class name
+
+          let position = 0; //slider postion
+
+          prev[i].addEventListener("click", function () {
+            target = prev[i].getAttribute("data-menu-target");
+            item = getSlide(target);
+            if (position > 0) {
+              position -= 1;
+              translateX(position, target); //translate items
+            } else {
+            }
+          });
+
+          next[i].addEventListener("click", function () {
+            target = next[i].getAttribute("data-menu-target");
+            item = getSlide(target);
+
+            if (position >= 0 && position < hiddenItems(target)) {
+              //avoid slide right beyond the last item
+              position += 1;
+              translateX(position, target); //translate items
+            }
+          });
+        }
+        function getSlide(target) {
+          let _item = null;
+          sides.forEach((ele) => {
+            if (ele.getAttribute("data-menu-target") == target) {
+              _item = ele;
+            }
+          });
+          return _item;
+        }
+        function hiddenItems(target) {
+          console.log("print", item);
+          let items = getCount(item, false);
+          let visibleItems = slider.offsetWidth / 210;
+          return items - Math.ceil(visibleItems);
+        }
+      }
+
+      function translateX(position, target) {
+        //translate items
+        console.log(slide);
+        document.querySelectorAll(".slide").forEach((ele) => {
+          if (ele.getAttribute("data-menu-target") == target)
+            ele.style.left = position * -210 + "px";
+        });
+      }
+
+      function getCount(parent, getChildrensChildren) {
+        //count no of items
+        let relevantChildren = 0;
+        let children = parent.childNodes.length;
+        for (let i = 0; i < children; i++) {
+          if (parent.childNodes[i].nodeType != 3) {
+            if (getChildrensChildren)
+              relevantChildren += getCount(parent.childNodes[i], true);
+            relevantChildren++;
+          }
+        }
+        return relevantChildren;
+      }
+    </script>
+    <!-- Code injected by live-server -->
+  </body>
+</html>

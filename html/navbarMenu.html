@@ -48,8 +48,8 @@
         opacity: 0;
         margin: auto;
         max-width: 1296px;
-        min-width: 1000px;
-        width: 94%;
+        min-width: 0;
+        width: 80%;
         transition: showMenu;
         animation: showMenu;
         background-color: whitesmoke;
@@ -78,6 +78,7 @@
         color: #1e1e1e;
         align-items: center;
         text-decoration: none;
+        cursor: pointer;
       }
       .dropdown_body .drop_item:hover {
         text-decoration: underline;
@@ -119,6 +120,49 @@
       }
     </style>
     <style>
+      .sub_drop_menu {
+        display: block;
+        position: relative;
+        background: white;
+      }
+      .sub_drop_menu:not(.active) {
+        display: none;
+      }
+      .sub_drop_menu_body {
+        display: flex;
+        max-width: 100%;
+      }
+      .sub_drop_menu_body .sub_drop_menu_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 10px;
+        width: 150px;
+        height: 150px;
+        cursor: pointer;
+      }
+
+      .sub_drop_menu_item img {
+        width: 100px;
+        display: block;
+        max-height: 100px;
+      }
+      .sub_drop_menu_item span {
+        font-size: medium;
+        color: #1e1e1e;
+        text-decoration: none;
+      }
+      .sub_drop_menu_item span {
+        font-size: medium;
+        color: #1e1e1e;
+        text-decoration: none;
+      }
+      .sub_drop_menu_item span:hover {
+        text-decoration: underline;
+      }
+    </style>
+    <style>
       .slider {
         width: 100%;
         height: 200px;
@@ -135,10 +179,13 @@
 
       .slider .slide {
         display: flex;
+        width: 94%;
         position: absolute;
-        left: 0;
+        /* left: 0; */
         transition: 0.3s left ease-in-out;
         min-width: 200px;
+        max-width: 93%;
+        overflow: hidden;
       }
 
       .slider .item {
@@ -205,16 +252,38 @@
             <div class="slide" id="slide"  data-menu-target="Data-target">
             ITEMS
             </div>
-            <button class="ctrl-btn pro-prev"  data-menu-target="Data-target">Prev</button>
-           <button class="ctrl-btn pro-next"  data-menu-target="Data-target">Next</button>
+            <button class="ctrl-btn pro-prev"  data-menu-target="Data-target">${"<"}</button>
+           <button class="ctrl-btn pro-next"  data-menu-target="Data-target">${">"}</button>
           </div>
         </nav>
-        <div style="width: 100%"></div>
+        SUBDROP
+      </div>
+      `;
+      const subdropdownTemp = `
+      <div class="sub_drop_menu" data-menu-target="Data-target">
+        <nav class="sub_drop_menu_body "  >
+          <div class="slider" id="slider">
+            <div class="slide" id="slide"  data-menu-target="Data-target">
+            ITEMS
+            </div>
+            <button class="ctrl-btn pro-prev"  data-menu-target="Data-target">${"<"}</button>
+           <button class="ctrl-btn pro-next"  data-menu-target="Data-target">${">"}</button>
+          </div>
+        </nav>
+        <div style="width: 100%" ></div>
 
       </div>
       `;
       const dorpdownItemTemp = `
-      <a class="drop_item item"  >
+      <a class="drop_item item"   id="ID">
+        <img
+          class="drop_item_img"
+          src="IMAGE"
+        />
+        <span>TEXT</span>
+      </a> `;
+      const subdorpdownItemTemp = `
+      <a class="sub_drop_menu_item item"  ">
         <img
           class="drop_item_img"
           src="IMAGE"
@@ -230,21 +299,117 @@
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item1",
+              id: "item_1_0",
+              childs: [
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_0",
+                },
+              ],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item1",
+              id: "item_1_1",
+              childs: [],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item1",
+              id: "item_1_2",
+              childs: [],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item1",
+              id: "item_1_3",
+              childs: [
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_3",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_3",
+                  a: "#",
+                },
+                {
+                  image:
+                    "https://cdn.pixabay.com/photo/2020/09/26/07/05/sea-5603351__340.jpg",
+                  label: "text sub item 1_3",
+                  a: "#",
+                },
+              ],
             },
           ],
         },
@@ -256,36 +421,50 @@
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item2",
+              id: "item_2_0",
+              childs: [],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item2",
+              id: "item_2_1",
+              childs: [],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item2",
+              id: "item_2_2",
+              childs: [],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item2",
+              id: "item_2_3",
+              childs: [],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item2",
+              id: "item_2_4",
+              childs: [],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item2",
+              id: "item_2_5",
+              childs: [],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item2",
+              id: "item_2_6",
+              childs: [],
             },
           ],
         },
@@ -297,11 +476,15 @@
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item3",
+              id: "item_3_0",
+              childs: [],
             },
             {
               image:
                 "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
               label: "text item3",
+              id: "item_3_1",
+              childs: [],
             },
           ],
         },
@@ -318,11 +501,31 @@
           let dorpDownItem = dorpdownItemTemp;
           dorpDownItem = dorpDownItem.replace(/IMAGE/g, item.image);
           dorpDownItem = dorpDownItem.replace(/TEXT/g, item.label);
+          dorpDownItem = dorpDownItem.replace(/ID/g, item.id);
           items += dorpDownItem;
           console.log(dorpDownItem);
         });
         console.log(items);
         dorpTem = dorpTem.replace(/ITEMS/g, items);
+        let subDrop = "";
+        let listSub = [];
+        let subTemp = subdropdownTemp;
+        div.items.forEach((item) => {
+          subDrop = "";
+          subTemp = subdropdownTemp;
+          subTemp = subTemp.replace(/Data-target/g, item.id);
+          item.childs.forEach((c) => {
+            let sub = subdorpdownItemTemp;
+            sub = sub.replace(/IMAGE/g, c.image);
+            sub = sub.replace(/TEXT/g, c.label);
+            subDrop += sub;
+            console.log("list: ", listSub);
+          });
+          subTemp = subTemp.replace(/ITEMS/g, subDrop);
+          listSub += subTemp;
+        });
+        console.log("list: ", listSub);
+        dorpTem = dorpTem.replace(/SUBDROP/g, listSub);
 
         document.getElementById("dropmenu_wrap").innerHTML += dorpTem;
       });
@@ -333,6 +536,9 @@
           .forEach((i) => i.classList.remove("active"));
         document
           .querySelectorAll(".dropdown_body")
+          .forEach((e) => e.classList.remove("active"));
+        document
+          .querySelectorAll(".sub_drop_menu")
           .forEach((e) => e.classList.remove("active"));
         document.getElementById("main").classList.remove("overlay");
       };
@@ -364,8 +570,33 @@
           }, 200);
         });
       });
-    </script>
+      document.querySelectorAll(".drop_item").forEach((sub) => {
+        sub.addEventListener("click", (event) => {
+          let isVisted = false;
+          let item = event.srcElement;
+          let items = document.querySelectorAll(".sub_drop_menu");
+          console.log(items);
+          items.forEach((e) => e.classList.remove("active"));
 
+          setTimeout(() => {
+            items.forEach((div, i) => {
+              let canOpen =
+                div.children[0].children[0].children[0].children.length > 0;
+              if (
+                div.getAttribute("data-menu-target") == item.id &&
+                !isVisted &&
+                canOpen
+              ) {
+                div.classList.add("active");
+                item.classList.add("active");
+              }
+            });
+            console.log(isVisted);
+          }, 200);
+        });
+      });
+    </script>
+    <script></script>
     <script>
       productScroll();
 
