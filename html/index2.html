@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      .navbar {
+        display: -webkit-box;
+        overflow: auto;
+        background-color: #333;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .navbar a {
+        float: left;
+        font-size: 16px;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      .dropdown {
+        float: left;
+        overflow: hidden;
+      }
+
+      .dropdown .dropbtn {
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+        padding: 14px 16px;
+        background-color: inherit;
+        font: inherit;
+        margin: 0;
+      }
+
+      .navbar a.link:hover,
+      .dropdown:hover .dropbtn,
+      .dropdown.active .dropbtn {
+        background-color: #c0c0c0;
+      }
+
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        width: 100%;
+        left: 0;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+      }
+
+      .dropdown-content .header {
+        background: #c0c0c0;
+        padding: 16px;
+        color: white;
+      }
+
+      .dropdown.active .dropdown-content {
+        display: block;
+      }
+
+      /* Create three equal columns that floats next to each other */
+      .column {
+        float: left;
+        width: 33.33%;
+        padding: 10px;
+        background-color: #ccc;
+        height: 250px;
+      }
+
+      .column a {
+        float: none;
+        color: black;
+        padding: 16px;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+      }
+
+      .column a:hover {
+        background-color: #ddd;
+      }
+
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    </style>
+    <style>
+      .sub_drop_menu {
+        display: block;
+        position: relative;
+        background: white;
+      }
+      .sub_drop_menu:not(.active) {
+        display: none;
+      }
+      .sub_drop_menu_body {
+        display: flex;
+        max-width: 100%;
+      }
+      .sub_drop_menu_body .sub_drop_menu_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 10px;
+        width: 150px;
+        height: 150px;
+        cursor: pointer;
+      }
+
+      .sub_drop_menu_item img {
+        width: 100px;
+        display: block;
+        max-height: 100px;
+      }
+      .sub_drop_menu_item span {
+        font-size: medium;
+        color: #1e1e1e;
+        text-decoration: none;
+      }
+      .sub_drop_menu_item span {
+        font-size: medium;
+        color: #1e1e1e;
+        text-decoration: none;
+      }
+      .sub_drop_menu_item span:hover {
+        text-decoration: underline;
+      }
+      .drop_item {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        margin: 0 5px;
+        font-size: 15px;
+        color: #1e1e1e !important;
+        align-items: center;
+        text-decoration: none;
+        cursor: pointer;
+        padding: 0;
+      }
+      .dropdown_body_items {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .drop_item_img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 10px auto 10px;
+      }
+      .drop_item.active {
+        background: #e3e2e2;
+      }
+    </style>
+    <style>
+      .slider {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        margin: auto;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        display: flex;
+      }
+
+      .slider::-webkit-scrollbar {
+        display: none;
+      }
+
+      .slider .slide {
+        display: flex;
+        width: 94%;
+        position: absolute;
+        /* left: 0; */
+        transition: 0.3s left ease-in-out;
+        min-width: 200px;
+        max-width: 93%;
+        /* overflow: hidden; */
+      }
+
+      .slider .item {
+        margin-right: 10px;
+      }
+
+      .slider .item:last-child {
+        margin-right: 0;
+      }
+
+      .ctrl {
+        text-align: center;
+        margin-top: 5px;
+      }
+
+      .ctrl-btn {
+        padding: 5px;
+        min-width: 50px;
+        background: #fff;
+        border: none;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+        outline: none;
+
+        position: absolute;
+        bottom: 5px;
+        margin-top: -27.5px;
+      }
+
+      .ctrl-btn.pro-prev {
+        right: 52px;
+      }
+
+      .ctrl-btn.pro-next {
+        right: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 1 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 1
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_1">
+                <a class="drop_item item" id="item_1_0" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item1</span>
+                </a>
+                <a class="drop_item item" id="item_1_1" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item1</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_1">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_1">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_1_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_1_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_1_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_1_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_1_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_1_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_1_1">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_1_1">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 2 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 2
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_2">
+                <a class="drop_item item" id="item_2_0" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 2</span>
+                </a>
+                <a class="drop_item item" id="item_2_1" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item2</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_2">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_2">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_2_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_1_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_2_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_2_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_2_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_2_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_2_1">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_2_1">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 3 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 3
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_3">
+                <a class="drop_item item" id="item_3_0" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 3</span>
+                </a>
+                <a class="drop_item item" id="item_3_1" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 3</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_3">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_3">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_3_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_3_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 3_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_3_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_3_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_3_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_3_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 3_1</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 3_1</span>
+                    </a>
+
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 3_1</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 3_1</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 3_1</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_3_1">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_3_1">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 4 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 4
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_4">
+                <a class="drop_item item" id="item_4_0" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 3</span>
+                </a>
+                <a class="drop_item item" id="item_4_1" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item2</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_4">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_4">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_4_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_1_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_4_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_4_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_4_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_4_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_4_1">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_4_1">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 5 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 5
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_5">
+                <a class="drop_item item" id="item_5_0" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 3</span>
+                </a>
+                <a class="drop_item item" id="item_5_1" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item2</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_5">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_5">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_5_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_1_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_5_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_5_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_5_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_5_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_5_1">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_5_1">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 6 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 6
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_6">
+                <a class="drop_item item" id="item_6_0" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 3</span>
+                </a>
+                <a class="drop_item item" id="item_6_1" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item2</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_6">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_6">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_6_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_1_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_6_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_6_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_6_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_6_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 2_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 1_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_6_1">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_6_1">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 7 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 7
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_7">
+                <a class="drop_item item" id="item_7_0" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 7</span>
+                </a>
+                <a class="drop_item item" id="item_7_1" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 7</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_7">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_7">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_7_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_7_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_7_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_7_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_7_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_7_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_7_1">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_7_1">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 8 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 8
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_8">
+                <a class="drop_item item" id="item_8_0" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 7</span>
+                </a>
+                <a class="drop_item item" id="item_8_1" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 7</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_8">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_8">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_8_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_8_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_8_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_8_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_8_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_8_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 8_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_8_1">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_8_1">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 9 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 9
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_9">
+                <a class="drop_item item" id="item_9_0" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 7</span>
+                </a>
+                <a class="drop_item item" id="item_9_1" onclick="subDrop(this)">
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 7</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_9">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_9">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_9_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_9_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 7_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_9_0">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_9_0">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_9_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_9_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                  </div>
+                  <button class="ctrl-btn pro-prev" data-menu-target="item_9_1">
+                    &lt;
+                  </button>
+                  <button class="ctrl-btn pro-next" data-menu-target="item_9_1">
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ===================================================================================== -->
+      <!-- =================================== Dropdown 10 ====================================== -->
+      <!-- ===================================================================================== -->
+      <div class="dropdown link" onclick="dropDown(this)">
+        <button class="dropbtn">
+          Dropdown 10
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="row">
+            <div class="slider" id="slider">
+              <div class="slide" id="slide" data-menu-target="item_10">
+                <a
+                  class="drop_item item"
+                  id="item_10_0"
+                  onclick="subDrop(this)"
+                >
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 10</span>
+                </a>
+                <a
+                  class="drop_item item"
+                  id="item_10_1"
+                  onclick="subDrop(this)"
+                >
+                  <img
+                    class="drop_item_img"
+                    src="./Navbar2_files/tree-736885__480.webp"
+                  />
+                  <span>text item 10</span>
+                </a>
+              </div>
+              <button class="ctrl-btn pro-prev" data-menu-target="item_10">
+                &lt;
+              </button>
+              <button class="ctrl-btn pro-next" data-menu-target="item_10">
+                &gt;
+              </button>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_10_0">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_10_0"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 10_0</span>
+                    </a>
+                  </div>
+                  <button
+                    class="ctrl-btn pro-prev"
+                    data-menu-target="item_10_0"
+                  >
+                    &lt;
+                  </button>
+                  <button
+                    class="ctrl-btn pro-next"
+                    data-menu-target="item_10_0"
+                  >
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+            <div class="sub_drop_menu" data-menu-target="item_10_1">
+              <nav class="sub_drop_menu_body">
+                <div class="slider" id="slider">
+                  <div
+                    class="slide"
+                    id="slide"
+                    data-menu-target="item_10_1"
+                    style="left: 0px"
+                  >
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                    <a class="sub_drop_menu_item item">
+                      <img
+                        class="drop_item_img"
+                        src="./Navbar2_files/sea-5603351__340.webp"
+                      />
+                      <span>text sub item 9_0</span>
+                    </a>
+                  </div>
+                  <button
+                    class="ctrl-btn pro-prev"
+                    data-menu-target="item_10_1"
+                  >
+                    &lt;
+                  </button>
+                  <button
+                    class="ctrl-btn pro-next"
+                    data-menu-target="item_10_1"
+                  >
+                    &gt;
+                  </button>
+                </div>
+              </nav>
+              <div style="width: 100%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      let subDropMenu = document.querySelectorAll(".sub_drop_menu");
+      const dropDown = (item) => {
+        if (!item.classList.contains("active")) {
+          document.querySelectorAll(".link").forEach((e) => {
+            if (e !== item) e.classList.remove("active");
+          });
+          item.classList.add("active");
+        } else item.classList.remove("active");
+        console.log(item.classList);
+      };
+
+      document.querySelectorAll(".slider").forEach((sub) => {
+        sub.addEventListener("click", (event) => {
+          event.stopPropagation();
+        });
+      });
+      const subDrop = (item) => {
+        let _submenu_with_item;
+
+        subDropMenu.forEach((e) => {
+          if (e.getAttribute("data-menu-target") == item.id)
+            _submenu_with_item = e;
+          e.classList.remove("active");
+        });
+        if (!item.classList.contains("active")) {
+          let items = document.querySelectorAll(".drop_item");
+          items.forEach((e) => {
+            if (e !== item) {
+              e.classList.remove("active");
+              if (_submenu_with_item instanceof Element)
+                _submenu_with_item.classList.remove("active");
+            }
+          });
+
+          item.classList.add("active");
+          if (_submenu_with_item instanceof Element)
+            _submenu_with_item.classList.add("active");
+        } else {
+          item.classList.remove("active");
+          if (_submenu_with_item instanceof Element)
+            _submenu_with_item.classList.remove("active");
+        }
+      };
+    </script>
+    <script>
+      productScroll();
+
+      function productScroll() {
+        let slider = document.getElementById("slider");
+        let next = document.getElementsByClassName("pro-next");
+        let prev = document.getElementsByClassName("pro-prev");
+        let slide = document.getElementById("slide");
+        let item = null;
+        let sides = document.querySelectorAll(".slide");
+        let target = "";
+        for (let i = 0; i < next.length; i++) {
+          //refer elements by class name
+
+          let position = 0; //slider postion
+
+          prev[i].addEventListener("click", function () {
+            target = prev[i].getAttribute("data-menu-target");
+            item = getSlide(target);
+            if (position > 0) {
+              position -= 1;
+              translateX(position, target); //translate items
+            } else {
+            }
+          });
+
+          next[i].addEventListener("click", function () {
+            target = next[i].getAttribute("data-menu-target");
+            item = getSlide(target);
+
+            if (position >= 0 && position < hiddenItems(target)) {
+              //avoid slide right beyond the last item
+              position += 1;
+              translateX(position, target); //translate items
+            }
+          });
+        }
+        function getSlide(target) {
+          console.log(target);
+          let _item = null;
+          sides.forEach((ele) => {
+            if (ele.getAttribute("data-menu-target") == target) {
+              _item = ele;
+            }
+          });
+          return _item;
+        }
+        function hiddenItems(target) {
+          console.log("print", item);
+          let items = getCount(item, false);
+          let visibleItems = slider.offsetWidth / 210;
+          return items - Math.ceil(visibleItems);
+        }
+      }
+
+      function translateX(position, target) {
+        //translate items
+        console.log(slide);
+        document.querySelectorAll(".slide").forEach((ele) => {
+          if (ele.getAttribute("data-menu-target") == target)
+            ele.style.left = position * -210 + "px";
+        });
+      }
+
+      function getCount(parent, getChildrensChildren) {
+        //count no of items
+        console.log(parent);
+        let relevantChildren = 0;
+        let children = parent.childNodes.length;
+        for (let i = 0; i < children; i++) {
+          if (parent.childNodes[i].nodeType != 3) {
+            if (getChildrensChildren)
+              relevantChildren += getCount(parent.childNodes[i], true);
+            relevantChildren++;
+          }
+        }
+        return relevantChildren;
+      }
+    </script>
+  </body>
+</html>
